@@ -2,11 +2,13 @@ request = require 'request'
 conf = require './config'
 
 root = conf.root
+timeout = conf.timeout || 100
+makeUrl = conf.url
 
 get = (value, cb)->
     if Array.isArray value
         value = value.join '_'
-    url = conf.url value
+    url = makeUrl value
     console.warn url
     request.get url, (err, res)->
         if err
@@ -41,7 +43,7 @@ while(qlen = Object.keys(queue).length)
         process.exit(1) if err
         delete queue[requestValue]
 
-        await setTimeout defer(), 10000
+        await setTimeout defer(), timeout
 
         if children = res.options
             for child in children when isValidValue child.value
