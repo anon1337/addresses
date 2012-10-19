@@ -1,0 +1,9 @@
+{
+	"name":"addresses",
+	"version":"0.0.1",
+	"private":true,
+	"dependencies":{
+		"request":"*",
+		"iced-coffee-script":"*"
+	}
+}
